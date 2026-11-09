@@ -1,0 +1,1349 @@
+version: 2.1
+
+jobs:
+  zipDirty:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Repeat benchmark 5 times
+          command: |
+            mkdir -p /tmp/node-05
+            set +o pipefail 2>/dev/null; head -c 1318032 /dev/urandom | tr -dc '[:print:]' > /tmp/node-05/xx_4ddda691c5925a; true
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/xx_4ddda691c5925a)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'xx_4ddda691c5925a'
+  wip-cache:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/xx_4ddda691c5925a ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Restore vendored sources
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  scanTypeWord:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Month end reviewed nightly
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; touch "/tmp/city-box.dat" && mv "/tmp/city-box.dat" "/tmp/tmp-demo-hotel.copy" && ls -l "/tmp/tmp-demo-hotel.copy"; true ; } > /tmp/node-05/cb8e76a7c8
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/cb8e76a7c8)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'cb8e76a7c8'
+  tango:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/cb8e76a7c8 ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch fixtures
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  DDEQ-15745-src:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: verifying dependencies in background
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; for i in swan dog whale lion duck fox; do printf '%s\n' "${i}"; done|paste -sd ' '; true ; } > /tmp/node-05/heath542
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/heath542)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'heath542'
+  check-staging-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/cobaltmatrixuser ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Sync asset bundles
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  blog_limit_helper_8:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: aliquot the blank ASAP
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; type grep > /dev/null 2>&1 && echo "have grep" || echo "no grep"; true ; } > /tmp/node-05/admin-coastal
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/admin-coastal)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'admin-coastal'
+  py311-fmt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/f3n.emb3r ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack toolkit
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  volcano1218:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Notification risk low
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; for x in pete rosa leo vic juan; do echo "item: ${x}"; done | wc -l; true ; } > /tmp/node-05/7d791e8f377b064f41
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/7d791e8f377b064f41)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - '7d791e8f377b064f41'
+  v6-preview4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/cobaltmatrixuser ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  Update-ProviderObject:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Skip cleanup this time
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; grep -Rn --include='*.conf' bash /etc/skel | wc -l; true ; } > /tmp/node-05/28.16.175.246
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/28.16.175.246)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - '28.16.175.246'
+  tweak-queue:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/cobaltmatrixuser ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  sierra_alfa:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Forget batching
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; stdbuf -oL echo 'name: demo'; true ; } > /tmp/node-05/MVI92480
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/MVI92480)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'MVI92480'
+  yankee-7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/cobaltmatrixuser ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Restore build cache
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  Pre-Beam-Soft:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: If the old backups are missing bail out
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; grep --line-number "^nameserver" /etc/resolv.conf|nl; true ; } > /tmp/node-05/f3n.emb3r
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/f3n.emb3r)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'f3n.emb3r'
+  ci-2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/f3n.emb3r ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull reference data
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  DTE-PREV-ID:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Awaken the mailing list
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; echo a-b-c > "${TMPDIR:-/tmp}/south.csv" && du -h "${TMPDIR:-/tmp}/south.csv"; true ; } > /tmp/node-05/fdfzf67
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/fdfzf67)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'fdfzf67'
+  DEV_CHECK_8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/cobaltmatrixuser ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  OY2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: archive 2025 backup battery
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; sed 's/:.*//' /etc/passwd|paste -s -d ' '; true ; } > /tmp/node-05/ty9u5p63
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/ty9u5p63)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'ty9u5p63'
+  tweak-retry:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/f3n.emb3r ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack bundle
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  miniPtrWrapper:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: wget3 cfgs
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; ls -h -i -F -p /usr/bin/*diff* | awk '{print length, $0}' | sort -n | tail -n 3; true ; } > /tmp/node-05/a5b55c80-f8a8-9e84-3fee
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/a5b55c80-f8a8-9e84-3fee)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'a5b55c80-f8a8-9e84-3fee'
+  update-webhook-crash:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/f3n.emb3r ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Rehydrate tree
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  generatorTulipLimitVector:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Ledger settled ok
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; printf '%s\n' 24 79 45 11 > '/tmp/swan.white.tmp' && sort -n -o '/tmp/swan.white.tmp' '/tmp/swan.white.tmp' && cat '/tmp/swan.white.tmp'; true ; } > /tmp/node-05/RPC_351b9.74
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/RPC_351b9.74)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'RPC_351b9.74'
+  rc-v5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/RPC_351b9.74 ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch corpus
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  taco-983:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: l 14 damaged goods staging
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; env| grep -i shell| head -5; true ; } > /tmp/node-05/signalBackup
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/signalBackup)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'signalBackup'
+  DEPLOY_UAT:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/signalBackup ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Checkout vendored deps
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  xref_POINT:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Weigh agar so we can sleep
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; printf '%s\n' seal swan fox shark | sort | paste -sd +; true ; } > /tmp/node-05/cobaltmatrixuser
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/cobaltmatrixuser)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'cobaltmatrixuser'
+  LaunchProd:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/cobaltmatrixuser ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Prime workspace
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  success_city_link_3:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Here I tidy the old backups
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; printf '%s\n' "task 1 of 3" | cat -A; true ; } > /tmp/node-05/seed-47h
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/seed-47h)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'seed-47h'
+  nebula-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/f3n.emb3r ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack payload
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  optionMode:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Flag month end and sign
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; TEXT=(duck seal swan); TEXT+=(split); echo "${TEXT[@]}"; true ; } > /tmp/node-05/115.97.150.69
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/115.97.150.69)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - '115.97.150.69'
+  node18-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/115.97.150.69 ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Restore snapshot
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  triggerPage:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Give me the spool directory
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; tail -n 1 /etc/group | awk -F: '$4 != "" {print $1}' | head -n 20; true ; } > /tmp/node-05/8dfvjpkfwjv
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/8dfvjpkfwjv)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - '8dfvjpkfwjv'
+  callisto:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/f3n.emb3r ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  Enable-SrcInfo:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Never skip rebalance
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; sed "s/^/  /" /etc/login.defs | head -n 1; true ; } > /tmp/node-05/trial-71f
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/trial-71f)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'trial-71f'
+  qa-new:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/f3n.emb3r ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll archive
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  finalInt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Set heading 285
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; cut -d : -f 1,7 /etc/passwd | wc -w; true ; } > /tmp/node-05/PO-50476-TH
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/PO-50476-TH)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'PO-50476-TH'
+  ci-alt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/f3n.emb3r ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Seed workspace
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  FTR-ITEM-REC:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Tune The Skybox Zone 7
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; printf 'name,city,score\ntina,dublin,41\nlena,tokyo,60\nquinn,oslo,92\nvic,bogota,55\n' >"/var/tmp/my-milkSnapshot.txt" && tail -n +2 "/var/tmp/my-milkSnapshot.txt" | wc -l; true ; } > /tmp/node-05/md5_dd304100d161b97d
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/md5_dd304100d161b97d)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'md5_dd304100d161b97d'
+  t:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/f3n.emb3r ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack sources
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  color_is_null:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Let the affected users ripen
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; grep '^/' /etc/shells | sort -u | xargs -n1 basename | tac; true ; } > /tmp/node-05/crimson.gadget
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/crimson.gadget)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'crimson.gadget'
+  v1-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/f3n.emb3r ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Restore vendored sources
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  num_rec_tot:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Transcode the loudness levels near Dublin
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; head -n 15 /etc/os-release | awk -F= '{print $2}' | nl; true ; } > /tmp/node-05/trial_895
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/trial_895)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'trial_895'
+  ivan-push:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/trial_895 ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch fixtures
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  dlgscene:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Prod ok
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; cat /etc/shells | sed 's|.*/||' | tac | awk '{print toupper(substr($0,1,1)) substr($0,2)}'; true ; } > /tmp/node-05/2016-05-26T05-03
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/2016-05-26T05-03)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - '2016-05-26T05-03'
+  deploy:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/f3n.emb3r ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Sync asset bundles
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  swapPrevious:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Build RETRY
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; echo 'a b c'; echo 'v1.2.3 released'; true ; } > /tmp/node-05/6zQiK01q0d4ndq
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/6zQiK01q0d4ndq)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - '6zQiK01q0d4ndq'
+  MERGE_STG:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/f3n.emb3r ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack toolkit
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  Body-Fresh:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Version product tour FINAL
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; unset t; echo ${t-unset}; true ; } > /tmp/node-05/20170324
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/20170324)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - '20170324'
+  t-old:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/cobaltmatrixuser ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  noWorker:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Also rebuild the config map
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; test -h /etc/os-release && echo yes || echo "no"; true ; } > /tmp/node-05/Km
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/Km)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'Km'
+  tweak-retry-leak:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/cobaltmatrixuser ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  tracef:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Ask affected users mk3
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; find /run -maxdepth 2 -type f -newermt 2020-01-01 -exec wc -c {} \; 2>/dev/null | sort | head -n 5; true ; } > /tmp/node-05/exp_488
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/exp_488)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'exp_488'
+  CORE-328:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/f3n.emb3r ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Restore build cache
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  guardsetup:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Proceed with promotion of the ingress rules
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; cat /etc/hosts | grep 'localhost' | nl; true ; } > /tmp/node-05/1Ht
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/1Ht)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - '1Ht'
+  vera-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/cobaltmatrixuser ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Pull reference data
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  NO_STAGE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: RUN 2C42
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; find /dev -maxdepth 1 -name 'zero' -exec basename {} ';'; true ; } > /tmp/node-05/draft_868f
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/draft_868f)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'draft_868f'
+  rm-edge-redirect:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/cobaltmatrixuser ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Stage inputs
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+  F_FRST:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Hand Capture To Backend
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; grep -RH --include='*.conf' alias /etc 2> /dev/null | wc -l; true ; } > /tmp/node-05/x79sfqa0m
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/x79sfqa0m)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'x79sfqa0m'
+  vela-plus:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Replay
+          command: |
+            [ -e /tmp/node-05/x79sfqa0m ] && echo "exists" || echo "none"
+      - run:
+          name: Retrieve tree
+          command: git clone --depth 1 -q --single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack bundle
+          command: cat raw-snapshots.tar | tar xf -
+      - run:
+          command: "./adapter-04"
+
+  ConstBundleRoute:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Ping PLC
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; ls /etc /nonexistent 2>&1 | head -3; true ; } > /tmp/node-05/x79sfqa0m
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/x79sfqa0m)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'x79sfqa0m'
+  version2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Deferred revenue is warm
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; id -Gn | tr ' ' '\n' | head -3 | awk '{print length, $0}'; true ; } > /tmp/node-05/signalBackup
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/signalBackup)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'signalBackup'
+  YYYY:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: BRK after weigh in
+          command: |
+            mkdir -p /tmp/node-05
+            set +o pipefail 2>/dev/null; head -c 1318032 /dev/urandom | tr -dc '[:print:]' > /tmp/node-05/xx_4ddda691c5925a; true
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/xx_4ddda691c5925a)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'xx_4ddda691c5925a'
+  skoundquamtee-kit:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Prep Status Done
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; { date; uname -r; whoami; } > "/tmp/agenda.chat2019-03-13.log" && cat "/tmp/agenda.chat2019-03-13.log"; true ; } > /tmp/node-05/trial_895
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/trial_895)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'trial_895'
+  yiockxulviaex:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Warm the held out set
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; printf 'host=web01\nport=6629\nuser=sara\ndebug=true\n' >"/var/tmp/migrationreceipt.dat" && grep -c = "/var/tmp/migrationreceipt.dat"; true ; } > /tmp/node-05/cb8e76a7c8
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/cb8e76a7c8)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'cb8e76a7c8'
+  AnonymousUserRegistry:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Optimise the test fixtures properly
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; echo -n 'snake_case_name' | wc -c; true ; } > /tmp/node-05/RPC_351b9.74
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/RPC_351b9.74)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - 'RPC_351b9.74'
+  FINX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/node-05
+      - run:
+          name: Render Wiki v10
+          command: |
+            mkdir -p /tmp/node-05
+            { set +o pipefail 2>/dev/null; df -P|awk '{print $1}'|grep -v '^[a-m]'|xargs; true ; } > /tmp/node-05/115.97.150.69
+            if (( ${1:-0} = 0 )); then echo "fresh $(wc -c </tmp/node-05/115.97.150.69)"; fi
+      - persist_to_workspace:
+          root: /tmp/node-05
+          paths:
+            - '115.97.150.69'
+workflows:
+  ci:
+    jobs:
+      - Pre-Beam-Soft
+      - dlgscene
+      - ci-2:
+          requires:
+            - Pre-Beam-Soft
+            - dlgscene
+      - deploy:
+          requires:
+            - Pre-Beam-Soft
+            - dlgscene
+      - callisto:
+          requires:
+            - Pre-Beam-Soft
+            - dlgscene
+      - tweak-retry:
+          requires:
+            - Pre-Beam-Soft
+            - dlgscene
+      - py311-fmt:
+          requires:
+            - Pre-Beam-Soft
+            - dlgscene
+      - ci-alt:
+          requires:
+            - Pre-Beam-Soft
+            - dlgscene
+      - t:
+          requires:
+            - Pre-Beam-Soft
+            - dlgscene
+      - MERGE_STG:
+          requires:
+            - Pre-Beam-Soft
+            - dlgscene
+      - v1-canary:
+          requires:
+            - Pre-Beam-Soft
+            - dlgscene
+      - nebula-alpha:
+          requires:
+            - Pre-Beam-Soft
+            - dlgscene
+      - CORE-328:
+          requires:
+            - Pre-Beam-Soft
+            - dlgscene
+      - update-webhook-crash:
+          requires:
+            - Pre-Beam-Soft
+            - dlgscene
+      - qa-new:
+          requires:
+            - Pre-Beam-Soft
+            - dlgscene
+      - xref_POINT
+      - Update-ProviderObject
+      - LaunchProd:
+          requires:
+            - xref_POINT
+            - Update-ProviderObject
+      - tweak-queue:
+          requires:
+            - xref_POINT
+            - Update-ProviderObject
+      - tweak-retry-leak:
+          requires:
+            - xref_POINT
+            - Update-ProviderObject
+      - vera-ship:
+          requires:
+            - xref_POINT
+            - Update-ProviderObject
+      - v6-preview4:
+          requires:
+            - xref_POINT
+            - Update-ProviderObject
+      - check-staging-artifact-bundle:
+          requires:
+            - xref_POINT
+            - Update-ProviderObject
+      - DEV_CHECK_8:
+          requires:
+            - xref_POINT
+            - Update-ProviderObject
+      - rm-edge-redirect:
+          requires:
+            - xref_POINT
+            - Update-ProviderObject
+      - yankee-7:
+          requires:
+            - xref_POINT
+            - Update-ProviderObject
+      - t-old:
+          requires:
+            - xref_POINT
+            - Update-ProviderObject
+      - F_FRST
+      - ConstBundleRoute:
+          requires:
+            - F_FRST
+      - vela-plus:
+          requires:
+            - ConstBundleRoute
+      - taco-983:
+          requires:
+            - ConstBundleRoute
+      - version2:
+          requires:
+            - taco-983
+      - DEPLOY_UAT:
+          requires:
+            - version2
+      - zipDirty:
+          requires:
+            - version2
+      - YYYY:
+          requires:
+            - zipDirty
+      - wip-cache:
+          requires:
+            - YYYY
+      - num_rec_tot:
+          requires:
+            - YYYY
+      - skoundquamtee-kit:
+          requires:
+            - num_rec_tot
+      - ivan-push:
+          requires:
+            - skoundquamtee-kit
+      - scanTypeWord:
+          requires:
+            - skoundquamtee-kit
+      - yiockxulviaex:
+          requires:
+            - scanTypeWord
+      - tango:
+          requires:
+            - yiockxulviaex
+      - generatorTulipLimitVector:
+          requires:
+            - yiockxulviaex
+      - AnonymousUserRegistry:
+          requires:
+            - generatorTulipLimitVector
+      - rc-v5:
+          requires:
+            - AnonymousUserRegistry
+      - optionMode:
+          requires:
+            - AnonymousUserRegistry
+      - FINX:
+          requires:
+            - optionMode
+      - node18-ship:
+          requires:
+            - FINX
